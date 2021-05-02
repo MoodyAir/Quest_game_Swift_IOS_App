@@ -35,7 +35,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="SendMessage"/>
                                 <connections>
-                                    <action selector="SendMessageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uNH-Xw-esl"/>
+                                    <action selector="SendMessageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tqa-K3-pja"/>
                                 </connections>
                             </button>
                         </subviews>

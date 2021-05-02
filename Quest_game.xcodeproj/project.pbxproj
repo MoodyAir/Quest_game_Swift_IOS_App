@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		65B7443398475373D03A79DD /* Pods_Quest_game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B5F3A3A5DF33A55873B40C /* Pods_Quest_game.framework */; };
+		844822CA263F364F0054C5FD /* QuestionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844822C9263F364F0054C5FD /* QuestionClient.swift */; };
+		844822CE263F45F10054C5FD /* UsersClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844822CD263F45F10054C5FD /* UsersClient.swift */; };
+		84B614D9263B75F100012CA6 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B614D8263B75F100012CA6 /* Client.swift */; };
 		84F983632639F1E800628EA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F983622639F1E800628EA7 /* AppDelegate.swift */; };
 		84F983652639F1E800628EA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F983642639F1E800628EA7 /* SceneDelegate.swift */; };
 		84F983672639F1E800628EA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F983662639F1E800628EA7 /* ViewController.swift */; };
@@ -18,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		0BB6C46A79D5D0DA9C35CCEC /* Pods-Quest_game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quest_game.release.xcconfig"; path = "Target Support Files/Pods-Quest_game/Pods-Quest_game.release.xcconfig"; sourceTree = "<group>"; };
+		844822C9263F364F0054C5FD /* QuestionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionClient.swift; sourceTree = "<group>"; };
+		844822CD263F45F10054C5FD /* UsersClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersClient.swift; sourceTree = "<group>"; };
+		84B614D8263B75F100012CA6 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		84F9835F2639F1E800628EA7 /* Quest_game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quest_game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F983622639F1E800628EA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F983642639F1E800628EA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +48,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		844822CC263F45C20054C5FD /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				844822C9263F364F0054C5FD /* QuestionClient.swift */,
+				84B614D8263B75F100012CA6 /* Client.swift */,
+				844822CD263F45F10054C5FD /* UsersClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
 		84F983562639F1E800628EA7 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +79,7 @@
 		84F983612639F1E800628EA7 /* Quest_game */ = {
 			isa = PBXGroup;
 			children = (
+				844822CC263F45C20054C5FD /* Client */,
 				84F983622639F1E800628EA7 /* AppDelegate.swift */,
 				84F983642639F1E800628EA7 /* SceneDelegate.swift */,
 				84F983662639F1E800628EA7 /* ViewController.swift */,
@@ -207,6 +224,9 @@
 			files = (
 				84F983672639F1E800628EA7 /* ViewController.swift in Sources */,
 				84F983632639F1E800628EA7 /* AppDelegate.swift in Sources */,
+				84B614D9263B75F100012CA6 /* Client.swift in Sources */,
+				844822CE263F45F10054C5FD /* UsersClient.swift in Sources */,
+				844822CA263F364F0054C5FD /* QuestionClient.swift in Sources */,
 				84F983652639F1E800628EA7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

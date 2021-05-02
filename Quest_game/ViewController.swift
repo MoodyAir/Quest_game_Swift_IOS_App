@@ -7,97 +7,77 @@
 import UIKit
 import StompClientLib
 
-struct QuestionRequest : Encodable {
-    var topic:String
-    var difficulty:String
+
+
+struct Question {
+    var id:Int = 0
+    var text:String = ""
+    var topic:String = ""
+    var difficulty:Int = 0
+
+    internal init(id: Int = 0, text: String = "", topic: String = "", difficulty: Int = 0) {
+        self.id = id
+        self.text = text
+        self.topic = topic
+        self.difficulty = difficulty
+    }
 }
 
-class ViewController: UIViewController, StompClientLibDelegate {
- 
-    
+
+
+class ViewController: UIViewController {
 
     @IBOutlet weak var ConnectionLabel: UILabel!
     @IBOutlet weak var ConnectionSwitch: UISwitch!
     @IBOutlet weak var SendMessageButton: UIButton!
+    let url = URL(string: "ws://192.168.0.102:8080/questionSocket/websocket")!
+    //let url = URL(string: "ws://192.168.43.219:8080/questionSocket/websocket")!
+    let questionsSubscribePath = "/topic/single_question"
+    let questionsSendMessagePath = "/app/single_question"
+    let usersValidationSubscribePath = "/topic/validate"
+    let usersValidationSendMessagePath = "/app/validate"
     
-    var socketClient = StompClientLib()
+    var questionClient: QuestionClient!
+    var usersClient: UsersClient!
     
-    // WARNING
-    // THIS ADRESS IS TO BE CHANGED
-    // IF YOU ARE NOT USING VM INSERT YOUR WINDOWS IPV4 ADAPTER IP HERE
-    let url = URL(string: "ws://192.168.0.101:8080/questionSocket/websocket")!
-    let subscribePath = "/topic/questions"
-    let sendMessagePath = "/app/question"
-
     override func viewDidLoad() {
-            super.viewDidLoad()
-    }
-    
-    func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
-        print("Destination : \(destination)")
-        print("String Body : \(stringBody ?? "nil")")
-    }
-    
-    func serverDidSendPing() {
-        print("Server ping")
+        super.viewDidLoad()
         
+        questionClient = QuestionClient(url: url,
+                                        subscribePath: questionsSubscribePath,
+                                        sendMessagePath: questionsSendMessagePath)
+        
+        usersClient = UsersClient(url: url,
+                                        subscribePath: usersValidationSubscribePath,
+                                        sendMessagePath: usersValidationSendMessagePath)
+        
+        
+            
+        questionClient.OnDataRecieved = {(question:Question) ->Void in
+            print(question)
+        }
+        questionClient.OnSocketConnected = {()->Void in
+            self.ConnectionLabel.text = "Websocket Connected"
+        }
+        questionClient.OnSocketDisconnected = {()->Void in
+            self.ConnectionLabel.text = "Websocket Disconnected"
+        }
     }
-
+    
+    
     @IBAction func SendMessageButtonPressed(_ sender: Any) {
-        let request = QuestionRequest(topic : "Кино",difficulty : "100")
-        let encodedData = try? JSONEncoder().encode(request)
-        let jsonString = String(data: encodedData!,encoding: .utf8)!
-        //"{topic : \"Кино\",difficulty : \"100\"}"
-        socketClient.sendMessage(message: jsonString, toDestination: sendMessagePath, withHeaders: nil, withReceipt: nil)
+        questionClient.RequestSingleQuestion(topic: "Кино", difficulty:  "100")
+        //usersClient.requestPasswordValidation(userName: "Kirill", password: "1234")
         
-        
-    }
-    
-    @IBAction func subscribeAction() {
     }
     
     @IBAction func ConnectionSwitched(_ sender: Any) {
         if  ConnectionSwitch.isOn {
-            Connect()
+            questionClient.Connect()
         }
         else{
-            Disconnect()
+            questionClient.Disconnect()
         }
-        
     }
-    func Disconnect() {
-        socketClient.disconnect()
-    }
-    
-    func Connect() {
-        socketClient.openSocketWithURLRequest(request: NSURLRequest(url: url) , delegate: self)
-        
-    }
-
-
-
-
-    func stompClientJSONBody(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
-        print(jsonBody as Any)
-    }
-
-    func stompClientDidDisconnect(client: StompClientLib!) {
-        ConnectionLabel.text = "Websocket disconnected!"
-        print("Socket disconnected")
-    }
-
-    func stompClientDidConnect(client: StompClientLib!) {
-        ConnectionLabel.text = "Websocket connected!"
-        socketClient.subscribe(destination: subscribePath)
-    }
-
-    func serverDidSendReceipt(client: StompClientLib!, withReceiptId receiptId: String) {
-        print("serverDidSendReceipt")
-
-    }
-
-    func serverDidSendError(client: StompClientLib!, withErrorMessage description: String, detailedErrorMessage message: String?) {
-        print("serverDidSendError")
-
-    }
+ 
 }
