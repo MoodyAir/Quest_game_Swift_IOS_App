@@ -9,19 +9,7 @@ import StompClientLib
 
 
 
-struct Question {
-    var id:Int = 0
-    var text:String = ""
-    var topic:String = ""
-    var difficulty:Int = 0
 
-    internal init(id: Int = 0, text: String = "", topic: String = "", difficulty: Int = 0) {
-        self.id = id
-        self.text = text
-        self.topic = topic
-        self.difficulty = difficulty
-    }
-}
 
 
 
@@ -30,53 +18,61 @@ class ViewController: UIViewController {
     @IBOutlet weak var ConnectionLabel: UILabel!
     @IBOutlet weak var ConnectionSwitch: UISwitch!
     @IBOutlet weak var SendMessageButton: UIButton!
-    let url = URL(string: "ws://192.168.0.102:8080/questionSocket/websocket")!
-    //let url = URL(string: "ws://192.168.43.219:8080/questionSocket/websocket")!
-    let questionsSubscribePath = "/topic/single_question"
-    let questionsSendMessagePath = "/app/single_question"
-    let usersValidationSubscribePath = "/topic/validate"
-    let usersValidationSendMessagePath = "/app/validate"
     
-    var questionClient: QuestionClient!
-    var usersClient: UsersClient!
+    	
+    
+    
+    // WARNING
+    // THIS ADRESS IS TO BE CHANGED
+    // IF YOU ARE NOT USING VM INSERT YOUR WINDOWS IPV4 ADAPTER IP HERE
+    //let url = URL(string: "ws://192.168.0.102:8080/questionSocket/websocket")!
+    let url = URL(string: "ws://192.168.0.102:8080/questionSocket/websocket")!
+    var subscribePath = "/topic/clientMessagePool"
+    var sendMessagePath = "/app/serverMessagePool"
+    
+    var client : Client!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questionClient = QuestionClient(url: url,
-                                        subscribePath: questionsSubscribePath,
-                                        sendMessagePath: questionsSendMessagePath)
+        client = Client(url: url, subscribePath: subscribePath, sendMessagePath: sendMessagePath)
         
-        usersClient = UsersClient(url: url,
-                                        subscribePath: usersValidationSubscribePath,
-                                        sendMessagePath: usersValidationSendMessagePath)
-        
-        
-            
-        questionClient.OnDataRecieved = {(question:Question) ->Void in
+        client.OnQuestionRecieved = {(question:Question) ->Void in
             print(question)
+            self.client.requestCorrectAnswer(id: question.id)
         }
-        questionClient.OnSocketConnected = {()->Void in
+        client.OnConfirmationRecieved = {(passwordIsValid:Bool) ->Void in
+            if(passwordIsValid){
+                print("login and password are valid")
+            }
+            else{
+                print("login and password are wrong")
+            }
+        }
+        client.OnCorrectAnswerRecieved = {(correctAnswer:String) ->Void in
+            print("Correct answer : " + correctAnswer)
+        }
+        client.OnSocketConnected = {()->Void in
             self.ConnectionLabel.text = "Websocket Connected"
         }
-        questionClient.OnSocketDisconnected = {()->Void in
+        client.OnSocketDisconnected = {()->Void in
             self.ConnectionLabel.text = "Websocket Disconnected"
         }
     }
     
     
     @IBAction func SendMessageButtonPressed(_ sender: Any) {
-        questionClient.RequestSingleQuestion(topic: "Кино", difficulty:  "100")
-        //usersClient.requestPasswordValidation(userName: "Kirill", password: "1234")
+        client.RequestSingleQuestion(topic: "Кино", difficulty:  "100")
+        client.requestPasswordValidation(userName: "Kirill", password: "1234")
         
     }
     
     @IBAction func ConnectionSwitched(_ sender: Any) {
         if  ConnectionSwitch.isOn {
-            questionClient.Connect()
+            client.Connect()
         }
         else{
-            questionClient.Disconnect()
+            client.Disconnect()
         }
     }
  
