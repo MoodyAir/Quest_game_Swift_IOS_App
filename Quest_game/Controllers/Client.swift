@@ -23,11 +23,35 @@ struct CorrectAnswerRequest : Encodable {
     var id: Int
 }
 
+struct TopicsRequest : Encodable {
+    var messageType = "topics"
+    var count: Int
+}
+
+struct DifficultiesRequest : Encodable {
+    var messageType = "difficulties"
+    var count: Int
+}
+struct UserRequeest : Encodable {
+    var messageType = "user"
+    var id: Int
+}
+struct CreateUserRequest : Encodable {
+    var messageType = "createUser"
+    var userName: String
+    var password : String
+}
+
+
 enum MessageType : String{
     case question = "question"
     case confirmation = "confirmation"
     case correctAnswer = "correctAnswer"
+    case difficulties = "difficulties"
+    case topics = "topics"
     case unknown = "unknown"
+    case user = "user"
+    case createUser = "createUser"
 }
 
 struct Question {
@@ -44,44 +68,79 @@ struct Question {
     }
 }
 	
+struct User {
+ 
+    
+    var id:Int = 0
+    var userName:String = ""
+    var score:Int = 0
+    
+    internal init(id: Int = 0, userName: String = "", score: Int = 0) {
+        self.id = id
+        self.userName = userName
+        self.score = score
+    }
+}
+
 class Client : StompClientLibDelegate
 {
     init(
-        url: URL = URL(string: "ws://localhost:8080/questionSocket/websocket")!,
-        subscribePath: String = "/topic/clientMessagePool",
-        sendMessagePath: String = "/app/serverMessagePool"
+        url: URL,
+        subscribePath: String,
+        sendMessagePath: String
     ) {
         self.url = url
         self.subscribePath = subscribePath
         self.sendMessagePath = sendMessagePath
         socketClient = StompClientLib()
+        Connect()
+    }
+    
+    init(
+    ) {
+        socketClient = StompClientLib()
+        Connect()
     }
 
     
     //Delegates
     typealias Action  = ()->Void
     typealias QuestionRecievedHandler = (Question)->Void
-    typealias ConfirmationRecievedHandler = (Bool)->Void
+    typealias UserRecievedHandler = (User)->Void
+    typealias ConfirmationRecievedHandler = (Bool,Int)->Void
+    typealias CreateUserResultRecievedHandler = (Bool,Int)->Void
     typealias QuestionAnswerRecievedHandler = (String)->Void
+    typealias TopicsRecievedHandler = ([String])->Void
+    typealias DifficlutiesRecievedHandler = ([Int])->Void
     
     
     //Actions, which triggerd when some event occurs
     var OnQuestionRecieved: QuestionRecievedHandler!
     var OnConfirmationRecieved: ConfirmationRecievedHandler!
     var OnCorrectAnswerRecieved : QuestionAnswerRecievedHandler!
+    var OnTopicsRecieved : TopicsRecievedHandler!
+    var OnDifficlutiesRecieved: DifficlutiesRecievedHandler!
     var OnSocketConnected: Action!
     var OnSocketDisconnected: Action!
+    var OnCreateUserResultRecieved : CreateUserResultRecievedHandler!
+    var OnUserRecieved: UserRecievedHandler!
     
     
  
-    var url = URL(string: "ws://localhost:8080/questionSocket/websocket")!
+    // WARNING
+    // THIS ADRESS IS TO BE CHANGED
+    // IF YOU ARE NOT USING VM INSERT YOUR WINDOWS IPV4 ADAPTER IP HERE
+    //let url = URL(string: "ws://tp-qg-heroku.herokuapp.com/questionSocket/websocket")!
+    var url = URL(string: "ws://192.168.43.219:8080/questionSocket/websocket")!
     var subscribePath = "/topic/clientMessagePool"
     var sendMessagePath = "/app/serverMessagePool"
     var socketClient = StompClientLib()
+    
+    static var instance : Client = Client()
 
-
+    	
   
-    func RequestSingleQuestion(topic:String,difficulty:String) {
+    func requestSingleQuestion(topic:String,difficulty:String) {
         let request = QuestionRequest(topic : topic,difficulty : difficulty)
         let encodedData = try? JSONEncoder().encode(request)
         let jsonString = String(data: encodedData!,encoding: .utf8)!
@@ -109,8 +168,45 @@ class Client : StompClientLibDelegate
         print("Message " + jsonString + " sent to destination " + sendMessagePath)
     }
     
+    func requestTopics(count : Int) {
+        
+        let request = TopicsRequest(count: count)
+        let encodedData = try? JSONEncoder().encode(request)
+        let jsonString = String(data: encodedData!,encoding: .utf8)!
+        socketClient.sendMessage(message: jsonString, toDestination: sendMessagePath, withHeaders: nil, withReceipt: nil)
+        print("Message " + jsonString + " sent to destination " + sendMessagePath)
+    }
+    
+    func requestDifficulties(count : Int) {
+        
+        let request = DifficultiesRequest(count: count)
+        let encodedData = try? JSONEncoder().encode(request)
+        let jsonString = String(data: encodedData!,encoding: .utf8)!
+        socketClient.sendMessage(message: jsonString, toDestination: sendMessagePath, withHeaders: nil, withReceipt: nil)
+        print("Message " + jsonString + " sent to destination " + sendMessagePath)
+    }
+    
+    
+    func requestCreateUser(userName : String, password : String) {
+        let request = CreateUserRequest(userName: userName,password:password)
+        let encodedData = try? JSONEncoder().encode(request)
+        let jsonString = String(data: encodedData!,encoding: .utf8)!
+        socketClient.sendMessage(message: jsonString, toDestination: sendMessagePath, withHeaders: nil, withReceipt: nil)
+        print("Message " + jsonString + " sent to destination " + sendMessagePath)
+    }
+    
+    func requestUser(id:Int) {
+        let request = UserRequeest(id: id)
+        let encodedData = try? JSONEncoder().encode(request)
+        let jsonString = String(data: encodedData!,encoding: .utf8)!
+        socketClient.sendMessage(message: jsonString, toDestination: sendMessagePath, withHeaders: nil, withReceipt: nil)
+        print("Message " + jsonString + " sent to destination " + sendMessagePath)
+    }
     
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
+        
+        print(jsonBody as Any)
+        
         let messageType =  MessageType(rawValue: (jsonBody?["messageType"] as! String) )
         switch messageType {
         case .question:
@@ -131,12 +227,40 @@ class Client : StompClientLibDelegate
             break
         case .confirmation:
             let passwordIsValid = jsonBody?["passwordIsValid"] as! Bool
+            let id = jsonBody?["id"] as! Int
             if OnConfirmationRecieved  != nil {
-            OnConfirmationRecieved(passwordIsValid)
+            OnConfirmationRecieved(passwordIsValid,id)
             }
-	            break
+            break
+        case .createUser:
+            let existing : Bool = jsonBody?["alreadyExists"] as! Bool
+            let id = jsonBody?["id"] as! Int
+            if(OnCreateUserResultRecieved != nil){
+                OnCreateUserResultRecieved(existing,id)
+            }
+            break
+        case .topics:
+            let topics = jsonBody?["topics"] as! [String]
+            if(OnTopicsRecieved != nil){
+                OnTopicsRecieved(topics)
+            }
+            break
+        case .user:
+            let user = User(id: jsonBody?["id"] as! Int,
+                            userName: jsonBody?["name"] as! String,
+                            score: jsonBody?["score"] as! Int)
+            if(OnUserRecieved != nil ){
+            OnUserRecieved(user)
+            }
+        case .difficulties:
+            let difficulties = jsonBody?["difficulties"] as! [Int64]
+            if(OnDifficlutiesRecieved != nil){
+                //OnDifficlutiesRecieved(difficulties)
+            }
+            break			
+        
         default:
-            print("unknown message type")
+            print("unknown message type recieved")
             break
         }
     

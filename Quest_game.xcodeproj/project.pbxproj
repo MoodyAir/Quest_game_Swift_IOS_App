@@ -8,17 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		65B7443398475373D03A79DD /* Pods_Quest_game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B5F3A3A5DF33A55873B40C /* Pods_Quest_game.framework */; };
+		84455F09264A0CAB000375D1 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84455F08264A0CAB000375D1 /* GameManager.swift */; };
+		844F551726480B6700A55786 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F551626480B6700A55786 /* LoginViewController.swift */; };
+		844F551A26480C2C00A55786 /* QuestionChoosingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F551926480C2C00A55786 /* QuestionChoosingViewController.swift */; };
+		844F551D26480C5900A55786 /* QuestionAnsweringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F551C26480C5900A55786 /* QuestionAnsweringViewController.swift */; };
+		844F552026480C7500A55786 /* GameEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F551F26480C7500A55786 /* GameEndViewController.swift */; };
 		84B614D9263B75F100012CA6 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B614D8263B75F100012CA6 /* Client.swift */; };
 		84F983632639F1E800628EA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F983622639F1E800628EA7 /* AppDelegate.swift */; };
 		84F983652639F1E800628EA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F983642639F1E800628EA7 /* SceneDelegate.swift */; };
 		84F983672639F1E800628EA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F983662639F1E800628EA7 /* ViewController.swift */; };
 		84F9836A2639F1E800628EA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F983682639F1E800628EA7 /* Main.storyboard */; };
 		84F9836C2639F1E900628EA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F9836B2639F1E900628EA7 /* Assets.xcassets */; };
-		84F9836F2639F1E900628EA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9836D2639F1E900628EA7 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0BB6C46A79D5D0DA9C35CCEC /* Pods-Quest_game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quest_game.release.xcconfig"; path = "Target Support Files/Pods-Quest_game/Pods-Quest_game.release.xcconfig"; sourceTree = "<group>"; };
+		84455F08264A0CAB000375D1 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		844F551626480B6700A55786 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		844F551926480C2C00A55786 /* QuestionChoosingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionChoosingViewController.swift; sourceTree = "<group>"; };
+		844F551C26480C5900A55786 /* QuestionAnsweringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnsweringViewController.swift; sourceTree = "<group>"; };
+		844F551F26480C7500A55786 /* GameEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndViewController.swift; sourceTree = "<group>"; };
 		84B614D8263B75F100012CA6 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		84F9835F2639F1E800628EA7 /* Quest_game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quest_game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F983622639F1E800628EA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -26,7 +35,6 @@
 		84F983662639F1E800628EA7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84F983692639F1E800628EA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84F9836B2639F1E900628EA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		84F9836E2639F1E900628EA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84F983702639F1E900628EA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99FC96B3C451DD18EC230BBB /* Pods-Quest_game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quest_game.debug.xcconfig"; path = "Target Support Files/Pods-Quest_game/Pods-Quest_game.debug.xcconfig"; sourceTree = "<group>"; };
 		A1B5F3A3A5DF33A55873B40C /* Pods_Quest_game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quest_game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,12 +52,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		844822CC263F45C20054C5FD /* Client */ = {
+		84455F07264A0C88000375D1 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				84455F08264A0CAB000375D1 /* GameManager.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		844822CC263F45C20054C5FD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				84B614D8263B75F100012CA6 /* Client.swift */,
+				844F551626480B6700A55786 /* LoginViewController.swift */,
+				844F551926480C2C00A55786 /* QuestionChoosingViewController.swift */,
+				844F551C26480C5900A55786 /* QuestionAnsweringViewController.swift */,
+				844F551F26480C7500A55786 /* GameEndViewController.swift */,
 			);
-			path = Client;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		84F983562639F1E800628EA7 = {
@@ -73,13 +93,13 @@
 		84F983612639F1E800628EA7 /* Quest_game */ = {
 			isa = PBXGroup;
 			children = (
-				844822CC263F45C20054C5FD /* Client */,
+				844822CC263F45C20054C5FD /* Controllers */,
 				84F983622639F1E800628EA7 /* AppDelegate.swift */,
 				84F983642639F1E800628EA7 /* SceneDelegate.swift */,
+				84455F07264A0C88000375D1 /* Game */,
 				84F983662639F1E800628EA7 /* ViewController.swift */,
 				84F983682639F1E800628EA7 /* Main.storyboard */,
 				84F9836B2639F1E900628EA7 /* Assets.xcassets */,
-				84F9836D2639F1E900628EA7 /* LaunchScreen.storyboard */,
 				84F983702639F1E900628EA7 /* Info.plist */,
 			);
 			path = Quest_game;
@@ -161,7 +181,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84F9836F2639F1E900628EA7 /* LaunchScreen.storyboard in Resources */,
 				84F9836C2639F1E900628EA7 /* Assets.xcassets in Resources */,
 				84F9836A2639F1E800628EA7 /* Main.storyboard in Resources */,
 			);
@@ -217,9 +236,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				84F983672639F1E800628EA7 /* ViewController.swift in Sources */,
+				84455F09264A0CAB000375D1 /* GameManager.swift in Sources */,
 				84F983632639F1E800628EA7 /* AppDelegate.swift in Sources */,
 				84B614D9263B75F100012CA6 /* Client.swift in Sources */,
+				844F551726480B6700A55786 /* LoginViewController.swift in Sources */,
+				844F551A26480C2C00A55786 /* QuestionChoosingViewController.swift in Sources */,
 				84F983652639F1E800628EA7 /* SceneDelegate.swift in Sources */,
+				844F552026480C7500A55786 /* GameEndViewController.swift in Sources */,
+				844F551D26480C5900A55786 /* QuestionAnsweringViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,14 +256,6 @@
 				84F983692639F1E800628EA7 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		84F9836D2639F1E900628EA7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84F9836E2639F1E900628EA7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

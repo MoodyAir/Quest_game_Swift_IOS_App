@@ -14,8 +14,8 @@
             filePath = "Quest_game/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
             landmarkName = "ViewController"
             landmarkType = "3">
             <Locations>
@@ -108,8 +108,8 @@
             filePath = "Quest_game/Client/Client.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "stompClient(client:didReceiveMessageWithJSONBody:akaStringBody:withHeader:withDestination:)"
             landmarkType = "7">
             <Locations>
@@ -142,6 +142,54 @@
                   startingLineNumber = "99"
                   endingLineNumber = "99"
                   offsetFromSymbolStart = "8211">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "60CCF2FB-AA70-471E-BA04-F696EBF781CF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Quest_game/Controllers/Client.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "60CCF2FB-AA70-471E-BA04-F696EBF781CF - d4f33ce011a65fc8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Quest_game.Client.stompClient(client: Swift.Optional&lt;StompClientLib.StompClientLib&gt;, didReceiveMessageWithJSONBody: Swift.Optional&lt;Swift.AnyObject&gt;, akaStringBody: Swift.Optional&lt;Swift.String&gt;, withHeader: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, withDestination: Swift.String) -&gt; ()"
+                  moduleName = "Quest_game"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Library/Autosave%20Information/Quest_game/Quest_game/Controllers/Client.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "235"
+                  endingLineNumber = "235"
+                  offsetFromSymbolStart = "10467">
+               </Location>
+               <Location
+                  uuid = "60CCF2FB-AA70-471E-BA04-F696EBF781CF - d4f33ce011a65fc8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Quest_game.Client.stompClient(client: Swift.Optional&lt;StompClientLib.StompClientLib&gt;, didReceiveMessageWithJSONBody: Swift.Optional&lt;Swift.AnyObject&gt;, akaStringBody: Swift.Optional&lt;Swift.String&gt;, withHeader: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, withDestination: Swift.String) -&gt; ()"
+                  moduleName = "Quest_game"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Library/Autosave%20Information/Quest_game/Quest_game/Controllers/Client.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "235"
+                  endingLineNumber = "235"
+                  offsetFromSymbolStart = "20786">
                </Location>
             </Locations>
          </BreakpointContent>

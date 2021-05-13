@@ -7,12 +7,6 @@
 import UIKit
 import StompClientLib
 
-
-
-
-
-
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var ConnectionLabel: UILabel!
@@ -21,12 +15,12 @@ class ViewController: UIViewController {
     
     	
     
-    
+
     // WARNING
     // THIS ADRESS IS TO BE CHANGED
     // IF YOU ARE NOT USING VM INSERT YOUR WINDOWS IPV4 ADAPTER IP HERE
-    //let url = URL(string: "ws://192.168.0.102:8080/questionSocket/websocket")!
-    let url = URL(string: "ws://192.168.0.102:8080/questionSocket/websocket")!
+    //let url = URL(string: "ws://tp-qg-heroku.herokuapp.com/questionSocket/websocket")!
+    let url = URL(string: "ws://192.168.135.1:8080/questionSocket/websocket")!
     var subscribePath = "/topic/clientMessagePool"
     var sendMessagePath = "/app/serverMessagePool"
     
@@ -41,16 +35,22 @@ class ViewController: UIViewController {
             print(question)
             self.client.requestCorrectAnswer(id: question.id)
         }
-        client.OnConfirmationRecieved = {(passwordIsValid:Bool) ->Void in
-            if(passwordIsValid){
-                print("login and password are valid")
-            }
-            else{
-                print("login and password are wrong")
-            }
-        }
+//        client.OnConfirmationRecieved = { (passwordIsValid:Bool,id:Int) ->Void in
+//            if(passwordIsValid){
+//                print("login and password are valid")
+//            }
+//            else{
+//                print("login and password are wrong")
+//            }
+//        }
         client.OnCorrectAnswerRecieved = {(correctAnswer:String) ->Void in
             print("Correct answer : " + correctAnswer)
+        }
+        client.OnTopicsRecieved = {(topics:[String])->Void in
+            print(topics)
+        }
+        client.OnDifficlutiesRecieved = {(difficulties:[Int])->Void in
+            print(difficulties)
         }
         client.OnSocketConnected = {()->Void in
             self.ConnectionLabel.text = "Websocket Connected"
@@ -62,8 +62,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func SendMessageButtonPressed(_ sender: Any) {
-        client.RequestSingleQuestion(topic: "Кино", difficulty:  "100")
+        client.requestSingleQuestion(topic: "Кино", difficulty:  "100")
+        client.requestPasswordValidation(userName: "Kirill", password: "1234--")
         client.requestPasswordValidation(userName: "Kirill", password: "1234")
+        client.requestTopics(count: 5)
         
     }
     
