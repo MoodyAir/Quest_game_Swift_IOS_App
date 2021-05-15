@@ -16,6 +16,7 @@ class QuestionChoosingViewController : UIViewController
     @IBOutlet weak var BackButton: UIButton!
     @IBOutlet weak var StatusLabel: UILabel!
     @IBOutlet weak var SelectDifficultyLabel: UILabel!
+    @IBOutlet weak var currentScoreLabel: UILabel!
     @IBOutlet weak var SelectAnotherDifficultyButton: UIButton!
     
     var topicButtons : [UIButton]=[]
@@ -25,7 +26,7 @@ class QuestionChoosingViewController : UIViewController
    
     override func viewDidLoad() {
         Client.instance.Connect()
-      
+        currentScoreLabel.text = "Очки: " + String.init(GameManager.currentScore)
 
         //GameManager.topics = ["A","B","C","D","E"]
         fillTopicsStack()
@@ -66,7 +67,7 @@ class QuestionChoosingViewController : UIViewController
         selectedTopic = topic
         TopicsStack.isHidden = true
         DifficultiesStack.isHidden = false
-        StatusLabel.text = "Topic: "+topic!
+        StatusLabel.text = "Тема: "+topic!
         refreshDifficultiesStack(topic: topic!)
         SelectAnotherDifficultyButton.isHidden = false
         SelectDifficultyLabel.isHidden = false
@@ -79,7 +80,7 @@ class QuestionChoosingViewController : UIViewController
         SelectAnotherDifficultyButton.isHidden  = true
         TopicsStack.isHidden = false
         DifficultiesStack.isHidden = true
-        StatusLabel.text = "Select topic"
+        StatusLabel.text = "Выберите тему"
         refreshTopicStack()
     }
     
@@ -96,7 +97,7 @@ class QuestionChoosingViewController : UIViewController
         selectedDifficulty = sender.currentTitle
         GameManager.currentTopic = selectedTopic
         GameManager.currentDifficulty = selectedDifficulty
-        print("Selected: " + selectedTopic + " | " + selectedDifficulty)
+        print("Выбрано: " + selectedTopic + " | " + selectedDifficulty)
         navigateToAnswering()
 //        GameManager.setFinished(topic: selectedTopic, difficulty: selectedDifficulty)
 //        refreshDifficultiesStack(topic: selectedTopic)
@@ -141,14 +142,24 @@ class QuestionChoosingViewController : UIViewController
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-        GameManager.reset()
         self.present(loginVC, animated: true, completion: nil)
     }
     
+    @IBAction func GameEndButton(_ sender: Any) {
+        navigateToGameEnd()
+    }
     func navigateToAnswering(){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         let QAVC = storyBoard.instantiateViewController(withIdentifier: "QuestionAnsweringVC") as! QuestionAnsweringViewController
         self.present(QAVC, animated: true, completion: nil)
     }
+    func navigateToGameEnd(){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let GameEndVC = storyBoard.instantiateViewController(withIdentifier: "GameEndVC") as! GameEndVC
+        //show(GameEndVC, sender: self)
+        self.present(GameEndVC, animated: true, completion: nil)
+    }
+
 }

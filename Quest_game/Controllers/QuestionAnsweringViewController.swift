@@ -20,7 +20,7 @@ class QuestionAnsweringViewController : UIViewController
     
     override func viewDidLoad() {
         Client.instance.OnQuestionRecieved = {(question:Question) in
-            self.TopicDIfficultyLabel.text = ("Topic: " + question.topic + " | Difficulty: " + String.init( question.difficulty ))
+            self.TopicDIfficultyLabel.text = ("Тема: " + question.topic + " | Сложность: " + String.init( question.difficulty ))
             self.QuestionTextLabel.text = question.text
             GameManager.currentQuestion = question
         }
@@ -28,10 +28,12 @@ class QuestionAnsweringViewController : UIViewController
             self.ResultLabel.isHidden = false
             self.ContinueButton.isHidden = false
             if  correctAnswer.lowercased() != self.answer.lowercased() {
-                self.ResultLabel.text = "Wrong! The answer is " + correctAnswer
+                self.ResultLabel.text = "Неверно! Правильный ответ : \n" + correctAnswer
+               
             }
             else{
-                self.ResultLabel.text = "Correct!"
+                self.ResultLabel.text = "Верно!"
+                GameManager.currentScore += Int.init(GameManager.currentDifficulty)!
             }
             GameManager.setFinished(topic: GameManager.currentTopic, difficulty: GameManager.currentDifficulty)
             

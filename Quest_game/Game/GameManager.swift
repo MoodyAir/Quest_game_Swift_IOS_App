@@ -13,6 +13,7 @@ class GameManager
     static var currentDifficulty : String!
     static var user :User!
     static var topicsCount = 5
+    static var currentScore: Int = 0
     static var topics:[String]!
     static var topicsFinished:[Bool] = Array.init(repeating: false, count: topicsCount)
     static var finished:[[Bool]] = Array.init(repeating: topicsFinished, count: 5)
@@ -20,10 +21,16 @@ class GameManager
     
     static func reset(){
         user = nil
+        resetScore()
+    }
+    
+    static func resetScore(){
         topics = []
         topicsFinished = Array.init(repeating: false, count: topicsCount)
         finished = Array.init(repeating: topicsFinished, count: 5)
+        currentScore = 0
     }
+    
     
     static func setFinished(topic: String, difficulty:String){
         let topicID = topics.firstIndex(of: topic)
@@ -36,5 +43,8 @@ class GameManager
         }
         topicsFinished[topicID!] = true
     }
+    
+    
+    
 }
 

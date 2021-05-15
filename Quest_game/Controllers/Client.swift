@@ -28,6 +28,12 @@ struct TopicsRequest : Encodable {
     var count: Int
 }
 
+struct UpdateScoreRequest : Encodable {
+    var messageType = "updateScore"
+    var score: Int
+    var id: Int
+}
+
 struct DifficultiesRequest : Encodable {
     var messageType = "difficulties"
     var count: Int
@@ -130,8 +136,8 @@ class Client : StompClientLibDelegate
     // WARNING
     // THIS ADRESS IS TO BE CHANGED
     // IF YOU ARE NOT USING VM INSERT YOUR WINDOWS IPV4 ADAPTER IP HERE
-    //let url = URL(string: "ws://tp-qg-heroku.herokuapp.com/questionSocket/websocket")!
-    var url = URL(string: "ws://192.168.43.219:8080/questionSocket/websocket")!
+    var url = URL(string: "ws://tp-quest-2.herokuapp.com/questionSocket/websocket")!
+    //var url = URL(string: "ws://192.168.0.102:8080/questionSocket/websocket")!
     var subscribePath = "/topic/clientMessagePool"
     var sendMessagePath = "/app/serverMessagePool"
     var socketClient = StompClientLib()
@@ -142,6 +148,16 @@ class Client : StompClientLibDelegate
   
     func requestSingleQuestion(topic:String,difficulty:String) {
         let request = QuestionRequest(topic : topic,difficulty : difficulty)
+        let encodedData = try? JSONEncoder().encode(request)
+        let jsonString = String(data: encodedData!,encoding: .utf8)!
+        
+        //"{topic : "Кино",difficulty : "100"}"
+        socketClient.sendMessage(message: jsonString, toDestination: sendMessagePath, withHeaders: nil, withReceipt: nil)
+        print("Message " + jsonString + " sent to destination " + sendMessagePath)
+    }
+    
+    func requestScoreUpdate(score:Int,id:Int) {
+        let request = UpdateScoreRequest(score: score, id: id)
         let encodedData = try? JSONEncoder().encode(request)
         let jsonString = String(data: encodedData!,encoding: .utf8)!
         

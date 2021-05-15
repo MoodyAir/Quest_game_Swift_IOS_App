@@ -7,35 +7,26 @@
 
 import Foundation
 import UIKit
-class GameEndViewController : UIViewController
+class GameEndVC : UIViewController
 {
     
-    @IBOutlet weak var MenuButton: UIButton!
     @IBOutlet weak var ResultLabel: UILabel!
     override func viewDidLoad() {
         ResultLabel.text = "Ваш счет: "+String.init(GameManager.currentScore)
         if GameManager.user.score < GameManager.currentScore{
             ResultLabel.text?.append("\n Поздравляем, вам удалось побить свой рекорд!\n Новый рекорд сохранен")
+            GameManager.user.score = GameManager.currentScore
             Client.instance.requestScoreUpdate(score: GameManager.currentScore, id: GameManager.user.id)
         }
         else{
             ResultLabel.text?.append("\n К сожалению, вам не удалось побить свой рекорд :(")
         }
         
-        MenuButton.addTarget(self, action: #selector(menu), for: .touchUpInside)
+    
        
     
     }
     
-    @objc func menu(){
-        print("Menuuuu")
-        navigateToMenu()
-    }
-    
-    @IBAction func Menu(_ sender: Any) {
-        print("Menuuuu")
-        navigateToMenu()
-    }
     
     func navigateToMenu() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -46,6 +37,10 @@ class GameEndViewController : UIViewController
         let topVC = topMostController()
         let vcToPresent = self.storyboard!.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
         topVC.present(vcToPresent, animated: true, completion: nil)
+    }
+    @IBAction func menubtn(_ sender: Any) {
+        print("da")
+        navigateToMenu()
     }
     
     

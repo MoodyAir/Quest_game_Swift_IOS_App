@@ -28,7 +28,7 @@
                                 <rect key="frame" x="20" y="166" width="374" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Pick the topic">
+                                    <fragment content="Выберите тему">
                                         <attributes>
                                             <font key="NSFont" size="27" name="TrebuchetMS-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -38,17 +38,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7v1-Bd-atn">
-                                <rect key="frame" x="20" y="44" width="102" height="30"/>
+                                <rect key="frame" x="42" y="44" width="58" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="&lt; Back to login"/>
+                                <state key="normal" title="&lt; Назад"/>
                                 <connections>
                                     <action selector="BackToLogin:" destination="EmP-CA-W8E" eventType="touchUpInside" id="XGj-1I-VZs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gme-pQ-nNf">
-                                <rect key="frame" x="138" y="761" width="139" height="30"/>
+                                <rect key="frame" x="129" y="761" width="157" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select another topic"/>
+                                <state key="normal" title="Выбрать другую тему"/>
                                 <connections>
                                     <action selector="SelectTopicButtonPressed:" destination="EmP-CA-W8E" eventType="touchUpInside" id="f73-Bl-uxz"/>
                                 </connections>
@@ -57,7 +57,7 @@
                                 <rect key="frame" x="20" y="192" width="374" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Select difficulty">
+                                    <fragment content="Выберите сложность">
                                         <attributes>
                                             <color key="NSColor" red="0.00014167746113991075" green="0.00014167746113991075" blue="0.00014167746113991075" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="27" name="TrebuchetMS-Bold"/>
@@ -67,6 +67,27 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4po-CE-rck">
+                                <rect key="frame" x="20" y="110" width="374" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Очки: 0">
+                                        <attributes>
+                                            <font key="NSFont" size="27" name="TrebuchetMS-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="558-HQ-RFF">
+                                <rect key="frame" x="293" y="44" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Закончить игру"/>
+                                <connections>
+                                    <action selector="GameEndButton:" destination="EmP-CA-W8E" eventType="touchUpInside" id="CBM-uz-IgG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hSr-cy-GI1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -78,6 +99,7 @@
                         <outlet property="SelectDifficultyLabel" destination="Cpm-bQ-8G0" id="IX1-rg-RJv"/>
                         <outlet property="StatusLabel" destination="KiG-7c-Xdo" id="pJG-By-30H"/>
                         <outlet property="TopicsStack" destination="xwF-Ke-RK1" id="Bfw-rv-p2g"/>
+                        <outlet property="currentScoreLabel" destination="4po-CE-rck" id="rLb-kd-ibS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QG7-Cv-vpw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -92,15 +114,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6H-tU-KqI">
-                                <rect key="frame" x="81" y="282" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Логин" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6H-tU-KqI">
+                                <rect key="frame" x="49" y="282" width="81" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnr-Vg-ldj">
-                                <rect key="frame" x="49" y="330" width="74" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnr-Vg-ldj">
+                                <rect key="frame" x="49" y="330" width="59" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -132,18 +154,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ym6-hW-uF5">
-                                <rect key="frame" x="106" y="381" width="47" height="30"/>
+                                <rect key="frame" x="108" y="381" width="44" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign in"/>
+                                <state key="normal" title="Войти"/>
                                 <connections>
                                     <action selector="SignInButtonPressed:" destination="jNq-5q-Sq3" eventType="touchUpInside" id="7Oz-Rn-OnP"/>
                                     <action selector="asdas:" destination="8Yp-s4-EBx" eventType="touchUpInside" id="mqL-Zq-odG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-Bi-K86">
-                                <rect key="frame" x="173" y="381" width="138" height="30"/>
+                                <rect key="frame" x="158" y="381" width="169" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Create new account"/>
+                                <state key="normal" title="Создать новый аккаунт"/>
                                 <connections>
                                     <action selector="CreateNewAccountButtonPressed:" destination="jNq-5q-Sq3" eventType="touchUpInside" id="euq-Oc-kNW"/>
                                 </connections>
@@ -162,7 +184,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="24W-Kd-St4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="8Yp-s4-EBx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-481.15942028985512" y="8.7053571428571423"/>
+            <point key="canvasLocation" x="-1346" y="31"/>
         </scene>
         <!--Question Answering View Controller-->
         <scene sceneID="Yfh-Ie-Npr">
@@ -186,16 +208,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your answer here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AuH-jM-cr9">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите ответ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AuH-jM-cr9">
                                 <rect key="frame" x="105" y="382" width="204" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rr-tG-HFP">
-                                <rect key="frame" x="183" y="433" width="49" height="30"/>
+                                <rect key="frame" x="175" y="433" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Submit"/>
+                                <state key="normal" title="Ответить"/>
                                 <connections>
                                     <action selector="SubmitButtonPressed:" destination="jEb-5j-l8U" eventType="touchUpInside" id="gEl-j8-vYb"/>
                                 </connections>
@@ -208,9 +230,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mE8-cO-jIf">
-                                <rect key="frame" x="174" y="564" width="66" height="30"/>
+                                <rect key="frame" x="162" y="564" width="90" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title=" Continue"/>
+                                <state key="normal" title="Продолжить"/>
                                 <connections>
                                     <action selector="ContinueButtonPressed:" destination="jEb-5j-l8U" eventType="touchUpInside" id="rYB-ui-JyQ"/>
                                 </connections>
@@ -231,6 +253,110 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YwT-Qu-IEg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="898.55072463768124" y="30.803571428571427"/>
+        </scene>
+        <!--MenuVC-->
+        <scene sceneID="DQs-N5-kWi">
+            <objects>
+                <viewController storyboardIdentifier="MenuVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wpI-6s-1bH" customClass="MenuVC" customModule="Quest_game" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qWf-jW-rc6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="10d-rM-OUh">
+                                <rect key="frame" x="20" y="293" width="374" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Ваш рекорд: 0">
+                                        <attributes>
+                                            <font key="NSFont" size="27" name="TrebuchetMS-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rd-55-uJ9">
+                                <rect key="frame" x="85" y="366" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Новая игра"/>
+                                <connections>
+                                    <action selector="NewGameButtonPressed:" destination="wpI-6s-1bH" eventType="touchUpInside" id="z1b-Me-i9h"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffh-ma-exC">
+                                <rect key="frame" x="190" y="362" width="139" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Сменить аккаунт"/>
+                                <connections>
+                                    <action selector="ChangeAccountButtonPressed:" destination="wpI-6s-1bH" eventType="touchUpInside" id="gyb-mB-FCA"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ow5-dp-C3O">
+                                <rect key="frame" x="161" y="216" width="101" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Меню">
+                                        <attributes>
+                                            <font key="NSFont" size="37" name="TrebuchetMS-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aa3-cm-Rdi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="RecordScoreLabel" destination="10d-rM-OUh" id="Bgc-jG-zQu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eBU-Ma-5Ec" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-581" y="31"/>
+        </scene>
+        <!--Game EndVC-->
+        <scene sceneID="uVl-jG-jBl">
+            <objects>
+                <viewController storyboardIdentifier="GameEndVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LUd-fS-Vlk" customClass="GameEndVC" customModule="Quest_game" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m4c-E3-1QJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Конец игры" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwP-Tl-JUL">
+                                <rect key="frame" x="139" y="205" width="137" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Результат" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zU-SO-q2f">
+                                <rect key="frame" x="20" y="291" width="337" height="182"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6g9-5B-sBx">
+                                <rect key="frame" x="186" y="574" width="42" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Меню"/>
+                                <connections>
+                                    <action selector="menubtn:" destination="LUd-fS-Vlk" eventType="touchUpInside" id="IAB-NQ-LWx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lru-oM-PpT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="ResultLabel" destination="4zU-SO-q2f" id="Pnx-qC-6vT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ESs-co-UMu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1542.0289855072465" y="30.803571428571427"/>
         </scene>
     </scenes>
     <resources>
